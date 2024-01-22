@@ -9,7 +9,7 @@ Input:
 - De novo transcripts (fasta file) from seven populations, genome assembly, transcriptome assembly and annotation
 
 Output: 
-- A file with information on the genomic position of the ORFs (Chromosome, Start, End, Strand, Stop)
+- A file with information on the genomic position of the ORFs (TranscriptName,StartORFinGenome,EndORFinGenome,StopCodon,Chrom,Population,Strand)
 - The corrected nucleotide (with added STOP) and protein ORF files where the following was removed: Duplicate ORFs (different spliceform but same genomic positions) and ORFs that do not have a stop codon at their end
 
 Run like this:
@@ -20,7 +20,10 @@ getorf -sequence AK5DeNovoTranscripts.fa  -outseq AK5ORFs_DNA.fa -minsize 90 -re
 #Protein
 getorf -sequence AK5DeNovoTranscripts.fa  -outseq AK5ORFs_Prot.fa -minsize 90 -reverse No -find 1
 ```
-2) Run the scripts Part1_Pg1 - Pg7 (from https://github.com/AnnaGrBio/Proto-gene_emergence).
+2) Run the scripts Part1_Pg1 - Pg7 (from https://github.com/AnnaGrBio/Proto-gene_emergence). You will need to make the following changes:
+- The output file with the information of the stop codon of each ORF needs to have these columns (Chrom, Population and Strand need to be added): TranscriptName,StartORFinGenome,EndORFinGenome,StopCodon,Chrom,Population,Strand
+- In cases two alternate spliceforms of a transcript contain the same ORF (= same genomic position, population + strand) only choose one.
+- Adapt the script so it works for multiple ORFs per transcript and not just one.
 
 # Step2: Build ORF orthogroups and detect length changes
 In this part orthogroups are built from the de novo ORFs. ORFs are grouped into an orthogroup when they (i) share the same neighbouring genes and (ii) fullfill certain blast criteria (100 % query coverage, 90 % identity, E-value < 0.0001). We only considered orthogroups without paralogs containing at least two populations for further analysis. Following this length changes are assessed in suitable orthogroups. 
