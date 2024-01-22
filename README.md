@@ -85,12 +85,13 @@ python3 The_long_survive_Part3.py
 ``` 
 2) Donwload the code from Github (https://github.com/AnnaGrBio/Proto-gene_emergence) and run Part2_Pg7-12
 3) Combine transcribed and nontranscribed ORFs into one dataframe with length change information
-``` 
-python3 The_long_survive_Part4.py
+```
+python3 The_long_survive_Part4.py #Restructure file with transcribed ORFs
+python3 The_long_survive_Part5.py #Add nontranscribed ORFs
 ``` 
 4) Reformat the file for R (Figure 5)
 ``` 
-python3 The_long_survive_Part5.py
+python3 The_long_survive_Part6.py
 ```
 
 # Step5: Plot the results
@@ -106,4 +107,4 @@ Output:
 - Figure 4 and 5
 
 How to run:
-1) Run the script The_long_survive_Part6.R in R 
+1) Run the script The_long_survive_Part7.R in R 
