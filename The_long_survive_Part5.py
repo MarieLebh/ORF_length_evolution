@@ -197,7 +197,7 @@ def Run_blast(Liste, Fasta):
         for item in Result_Liste:
             item2 = ",".join(item)
             Outfile.write(item2  + "\n")
-    print("Num of all homologs:", count, "Number of seqs with no hit:", count_empty)
+    print("Num of all homologs:", count, "Number of seqs with no suitable ORF:", count_empty)
     return Result_Liste
                    
 #############################################################################################
