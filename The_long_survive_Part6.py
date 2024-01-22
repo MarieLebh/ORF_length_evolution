@@ -26,21 +26,19 @@ Infile = "Merged_File_HOM_ORF.txt"
 
 def Restructure_df():
     df = pd.read_csv(Infile ,sep='\t')
-    #Make list column values integers
     df["Start"] = df["Start"].apply(lambda x: list(map(int, x.split(","))))
     df["End"] = df["End"].apply(lambda x: list(map(int, x.split(","))))
     df["Lengths"] = df["Lengths"].apply(lambda x: list(map(int, x.split(","))))
     #Create the outputfile
     with open("Results.txt", "w") as outfile:
         outfile.write("Orthogroup,Population1,Population2,Type,Difference"+ "\n") #header (aka categories we want)
-        #Iterate over each row in the df
         for index, row in df.iterrows():
             start_values = row["Start"]
             end_values = row["End"]
             lengths = row["Lengths"]
             orthogroup_id = row["Orthogroup_ID"]
             populations = row["Populations"].split(",")
-            # Compare the first element with all following elements
+            # Compare the first ORF (= longest ORF) with all following ORFs (= short ORFs)
             for i in range(1, len(start_values)):
                 #print(i)
                 length = lengths[0] - lengths[i] #Calculate difference long ORF - short ORF
